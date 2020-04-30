@@ -6,4 +6,7 @@ Only first five digits of the hashed password is sent to the API, which returns 
 
 The script has been written on Python 3.7.
 
-Use: python check_password.py admin admin123 secret ... password
+Example: 
+```
+python check_password.py admin admin123 secret ... password
+```
