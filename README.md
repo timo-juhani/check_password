@@ -10,3 +10,4 @@ Example:
 ```
 python check_password.py
 ```
+![Image description](example.jpg)
