@@ -44,18 +44,25 @@ def check_for_compromise(hashes, tail_pass):
 # Putting it all together to run it against multiple passwords
 
 
-def main(args):
-    for password in args:
-        checked_pass, tail_pass = hash_password(password)
-        hashes = check_password_api(checked_pass)
-        count = int(check_for_compromise(hashes, tail_pass))
+def main():
 
-        if count > 0:
-            print(f"The password has been compromised {count} times!")
-        else:
-            print("No compromise detected.")
+    with open("passwords.txt") as password_file:
+        passwords = password_file.read().splitlines()
+
+        for password in passwords:
+            checked_pass, tail_pass = hash_password(password)
+            hashes = check_password_api(checked_pass)
+            count = int(check_for_compromise(hashes, tail_pass))
+            console_pass = password[:3] + "*****"
+
+            if count > 0:
+                print(
+                    f"The password {console_pass} was compromised {count} times!")
+            else:
+                print("No compromise detected.")
 
 # EXECUTE
 
 
-main(sys.argv[1:])
+if __name__ == "__main__":
+    main()
